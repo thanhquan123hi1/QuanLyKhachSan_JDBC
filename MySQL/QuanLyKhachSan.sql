@@ -1,0 +1,113 @@
+-- Tạo CSDL
+CREATE DATABASE QuanLyKhachSan;
+USE QuanLyKhachSan;
+
+-- Bảng Phong
+CREATE TABLE Phong (
+    MaPH INT PRIMARY KEY,
+    LoaiPH VARCHAR(50),
+    TinhTrangPH VARCHAR(50),
+    GiaPH DECIMAL(18,2) NOT NULL
+);
+
+-- Bảng KhachHang
+CREATE TABLE KhachHang (
+    MaKH INT AUTO_INCREMENT PRIMARY KEY,
+    TenKH VARCHAR(100) NOT NULL,
+    QuocTich VARCHAR(50) NOT NULL,
+    CCCD_VISA VARCHAR(50) NOT NULL UNIQUE,
+    SDT VARCHAR(20) UNIQUE
+);
+
+-- Bảng NhanVien
+CREATE TABLE NhanVien (
+    MaNV INT AUTO_INCREMENT PRIMARY KEY,
+    TenNV VARCHAR(100) NOT NULL,
+    ChucVu VARCHAR(50),
+    CCCD VARCHAR(50) NOT NULL UNIQUE,
+    SDT VARCHAR(20) UNIQUE
+);
+
+-- Bảng HoaDon
+CREATE TABLE HoaDon (
+    MaHD INT AUTO_INCREMENT PRIMARY KEY,
+    MaKH INT,
+    TenHD VARCHAR(100),
+    TongTien DECIMAL(18,2) NOT NULL,
+    TinhTrangTT VARCHAR(50),
+    HinhThucTT VARCHAR(50),
+    NgayTT DATETIME,
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH)
+);
+
+-- Bảng DichVu
+CREATE TABLE DichVu (
+    MaDV INT AUTO_INCREMENT PRIMARY KEY,
+    TenDV VARCHAR(100) NOT NULL,
+    GiaDV DECIMAL(18,2) NOT NULL
+);
+
+-- Bảng LoaiDV
+CREATE TABLE LoaiDV (
+    MaLoaiDV INT PRIMARY KEY,
+    TenLoaiDV VARCHAR(50) NOT NULL UNIQUE
+);
+
+-- Bảng DatPhong
+CREATE TABLE DatPhong (
+    MaPH INT,
+    MaKH INT,
+    HinhThucDP VARCHAR(50),
+    NgNhanPH DATETIME NOT NULL,
+    NgTraPH DATETIME NOT NULL,
+    PRIMARY KEY (MaPH, MaKH),
+    FOREIGN KEY (MaPH) REFERENCES Phong(MaPH),
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH)
+);
+
+-- Ràng buộc NgTraPH >= NgNhanPH dùng trigger hoặc tầng ứng dụng
+
+-- Bảng QuanLy
+CREATE TABLE QuanLy (
+    MaPH INT,
+    MaNV INT,
+    PRIMARY KEY (MaPH, MaNV),
+    FOREIGN KEY (MaPH) REFERENCES Phong(MaPH),
+    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV)
+);
+
+-- Bảng LapHoaDon
+CREATE TABLE LapHoaDon (
+    MaNV INT PRIMARY KEY,
+    MaHD INT,
+    NgayLap DATETIME NOT NULL,
+    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV),
+    FOREIGN KEY (MaHD) REFERENCES HoaDon(MaHD)
+);
+
+-- Bảng SuDungDichVu
+CREATE TABLE SuDungDichVu (
+    MaKH INT,
+    MaDV INT,
+    SoLuong INT NOT NULL,
+    ThoiGian DATETIME NOT NULL,
+    PRIMARY KEY (MaKH, MaDV),
+    FOREIGN KEY (MaKH) REFERENCES KhachHang(MaKH),
+    FOREIGN KEY (MaDV) REFERENCES DichVu(MaDV)
+);
+
+-- Bảng ThuocLoaiDV
+CREATE TABLE ThuocLoaiDV (
+    MaDV INT AUTO_INCREMENT PRIMARY KEY,
+    MaLoaiDV INT,
+    FOREIGN KEY (MaDV) REFERENCES DichVu(MaDV),
+    FOREIGN KEY (MaLoaiDV) REFERENCES LoaiDV(MaLoaiDV)
+);
+
+-- Bảng Users
+CREATE TABLE Users (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(255) UNIQUE NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL
+);
