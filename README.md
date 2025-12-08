@@ -12,22 +12,22 @@ Hệ thống phần mềm quản lý khách sạn trọn gói (Desktop Applicati
 
 Dựa trên mã nguồn hiện tại, hệ thống bao gồm các chức năng:
 
-* ** Đăng nhập & Phân quyền:**
-    * Giao diện đăng nhập với hiệu ứng hoạt hình (mây trôi) đẹp mắt.
+* **Đăng nhập & Phân quyền:**
+    * Giao diện đăng nhập với hiệu ứng hoạt hình (mây trôi).
     * Đăng ký tài khoản mới và xác thực người dùng.
-* ** Quản lý Phòng (Room Management):**
+* **Quản lý Phòng (Room Management):**
     * Xem sơ đồ phòng trực quan (Trống/Đã đặt) theo màu sắc.
     * Tìm kiếm phòng theo tầng, mã phòng, trạng thái.
     * Check-in nhanh cho khách hàng.
-* ** Dịch vụ (Services):**
+* **Dịch vụ (Services):**
     * Đặt dịch vụ cho phòng: Nhà hàng (Sáng/Trưa/Tối), Bar, Hồ bơi, Giặt sấy, Xông hơi...
     * Tự động tính tiền dịch vụ vào hóa đơn.
-* ** Quản lý Khách hàng:**
+* **Quản lý Khách hàng:**
     * Lưu trữ thông tin khách hàng, CCCD/Visa, Quốc tịch.
     * Tra cứu lịch sử đặt phòng.
-* ** Quản lý Nhân viên:**
+* **Quản lý Nhân viên:**
     * CRUD (Thêm, Xóa, Sửa, Tìm kiếm) thông tin nhân viên.
-* ** Hóa đơn & Thanh toán:**
+* **Hóa đơn & Thanh toán:**
     * Tự động tính tổng tiền phòng và dịch vụ.
     * Hỗ trợ thanh toán tiền mặt hoặc thẻ tín dụng.
     * Tính thuế (VAT) và xuất hóa đơn.
@@ -52,7 +52,7 @@ Dựa trên mã nguồn hiện tại, hệ thống bao gồm các chức năng:
 
 1.  **Clone repository:**
     ```bash
-    git clone [https://github.com/thanhquan123hi1/PandaBamboo-HMS-JDBC.git](https://github.com/thanhquan123hi1/PandaBamboo-HMS-JDBC.git)
+    git clone https://github.com/thanhquan123hi1/PandaBamboo-HMS-JDBC.git
     ```
 
 2.  **Cấu hình Cơ sở dữ liệu:**
